@@ -133,7 +133,9 @@
             if (document.getElementById('option').value == 'pstrength') {
               //Password Validation
               var inputVal = document.getElementById('password').value;
-              if (/^(?=.*[A-Z])(?=.*[0-9])(?=.*[\$#\-_&])\S{6,}$/.test(inputVal)) {
+              var inputVal = document.getElementById('password').value;
+              var pattNotAllowed = /[^a-zA-Z\d\$\#\-\_\&]+/g;
+              if (/^(?=.*[A-Z])(?=.*[0-9])(?=.*[\$#\-_&])\S{6,}$/.test(inputVal) && !pattNotAllowed.test(inputVal)) {
                 phfresponse.innerHTML = "The password "+inputVal+" is Valid";
               } else {
                 phfresponse.innerHTML = "The password "+inputVal+" is Invalid";
