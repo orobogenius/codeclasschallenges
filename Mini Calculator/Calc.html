@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mini Calculator</title>
+	<style type="text/css" rel="stylesheet">
+		#calc {
+			width: 300px;
+			background-color: gray;
+			height: 210px;
+			padding-top: 10px;
+			padding-left: 10px;
+			margin: 0 auto;
+		}
+		#header input {
+			width: 90%;
+			height: 25px;
+			text-align: right;
+			color: #000;
+			font-weight: bolder;
+			font-size: 18px;
+		}
+		#calc-body {
+			margin-top: 15px;
+			margin-left: 7px;
+		}
+		#calc-body button {
+			width: 50px;
+			height: 30px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+		button#zero {
+			width: 105px;
+		}
+		button#eq {
+			float: right;
+			height: 70px;
+			margin-right: 25px;
+		}
+
+		button:hover {
+			background-color: #1de9b6;
+			border: none;
+		}
+
+	</style>
+</head>
+<body>
+	<p style="text-align: center">
+		This is a mini calculator designed in JavaScript. <br>
+		It accepts only two operands and a single operator e.g <b>42 + 18</b>
+	</p>
+	<div id="calc">
+		<div id="header">
+			<input type="text" id="screen" disabled="disabled" placeholder="0" />
+		</div>
+		<div id="calc-body">
+			<button id="7" value="7">7</button>
+			<button id="8" value="8">8</button>
+			<button id="9" value="9">9</button>
+			<button id="div" value="/">/</button>
+			<button id="del">del</button>
+			<br>
+			<button id="4" value="4">4</button>
+			<button id="5" value="5">5</button>
+			<button id="6" value="6">6</button>
+			<button id="mul" value="*">*</button>
+			<button id="mod" value="%">%</button>
+			<br>
+			<button id="1" value="1">1</button>
+			<button id="2" value="2">2</button>
+			<button id="3" value="3">3</button>
+			<button id="min" value="-">-</button>
+			<button id="eq">=</button>
+			<br>
+			<button id="zero" value="0">0</button>
+			<button id="dot" value=".">.</button>
+			<button id="plus" value="+">+</button>
+		</div>
+	</div>
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
