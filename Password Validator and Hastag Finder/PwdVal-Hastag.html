@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Password Strength and Hashtag Finder</title>
+    <style type="text/css">
+    #phf-main {
+      width: 40%;
+      height: auto;
+      border: 2px solid #cfd8dc;
+      border-radius: 4px;
+      margin: 5% auto;
+      padding: 0;
+    }
+    #phf-header {
+      background-color: #20262F;
+      padding: 1px 15px;
+      border-top-left-radius:3px;
+      border-top-right-radius:3px;
+      font-family: "Myriad Pro";
+      color: #fff;
+    }
+    #phf-body {
+      padding: 20px;
+      font-family: "Myriad Pro", cursive;
+      text-align: center;
+    }
+    label {
+      width: 20%;
+      display: inline-block;
+      text-align: right;
+      margin-right: 20px;
+      vertical-align: top;
+    }
+    input, select, textarea {
+      width: 70%;
+      height: 25px;
+      border: 2px solid #20262F;
+      border-radius: 5px;
+      margin-left: 5px;
+      margin-bottom: 20px;
+    }
+    textarea {
+      height: 150px;
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      margin: 0 auto;
+      height: 30px;
+      width: 100px;
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #20262F;
+      color: #fff;
+      font-family: 'Myriad Pro';
+    }
+    button:hover {
+      background-color: #4db6ac;
+    }
+    #phf-response {
+      margin: 0 auto;
+      background-color: #20262F;
+      border: 2px solid #cfd8dc;
+      color: #fff;
+      width: 40%;
+      height: auto;
+      border-radius: 5px;
+      padding: 10px;
+      font-family: "Myriad Pro";
+    }
+    .valid {
+      color: #00ff00;
+    }
+    .invalid {
+      color: #ff0000;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="phf-main">
+        <div id="phf-header">
+          <h2>Password Strength and Hashtag Finder</h2>
+        </div>
+        <div id="phf-body">
+          <p>
+            To begin, select an option from the menu below:
+          </p>
+          <label for="option">Select Option: </label>
+          <select name="option" id="option">
+            <option value="pstrength">Password Strength</option>
+            <option value="hfinder">Hashtag Finder</option>
+          </select><br />
+          <div id="passdiv">
+            <label for="password">Enter Password: </label>
+            <input type="password" id="password" required />
+            <br />
+          </div>
+          <div class="hidden" id="commentdiv">
+            <label for="comment">Comment: </label>
+            <textarea required id="comment" ></textarea><br />
+          </div>
+          <button type="submit" id="submit-btn">Validate</button>
+        </div>
+    </div>
+    <div id="phf-response">
+
+    </div>
+    <script type="text/javascript">
+      window.onload = function() {
+        phfresponse = document.getElementById('phf-response'),
+        commentdiv = document.getElementById('commentdiv'),
+        passdiv  = document.getElementById('passdiv'),
+        subbtn = document.getElementById('submit-btn');
+        document.getElementById('option').addEventListener('change', function(e) {
+            switch (this.value) {
+              case 'hfinder':
+                  commentdiv.style.display = "block";
+                  passdiv.style.display = "none";
+                  subbtn.innerHTML = "Find Hastags";
+                  phfresponse.innerHTML = "";
+                  break;
+              case 'pstrength':
+                  passdiv.style.display = "block";
+                  commentdiv.style.display = "none";
+                  break;
+            }
+          });
+          subbtn.addEventListener('click', function(e) {
+            if (document.getElementById('option').value == 'pstrength') {
+              //Password Validation
+              var inputVal = document.getElementById('password').value;
+              if (/^(?=.*[A-Z])(?=.*[0-9])(?=.*[\$#\-_&])\S{6,}$/.test(inputVal)) {
+                phfresponse.innerHTML = "The password "+inputVal+" is Valid";
+              } else {
+                phfresponse.innerHTML = "The password "+inputVal+" is Invalid";
+              }
+            } else {
+              //Hashtags Finder
+              var hashtags = document.getElementById('comment').value.match(/(?:^|\s)(?:#+)([\w]+)/g);
+              phfresponse.innerHTML = "Your Hashtags are: " + hashtags.join(',').replace(/#+/g, '');
+            }
+          });
+      };
+    </script>
+  </body>
+</html>
